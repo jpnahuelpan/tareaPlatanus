@@ -6,7 +6,7 @@ class MarketsObj
     @_url = url
   end
 
-  def get_markets_lst()
+  def get_markets_lst
     response = Faraday.get(@_url)
     markets_obj = JSON.parse(response.body, {object_class: OpenStruct})
     markets_lst = []
