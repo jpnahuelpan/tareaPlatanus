@@ -26,7 +26,7 @@ class TradesByTime
       
       # puts "exito break if #{count} con last_timestamp: #{trades_ostruct['last_timestamp']}"
       count += 1
-      @_timestamp = trades_ostruct['last_timestamp'].to_i  
+      @_timestamp = trades_ostruct['last_timestamp'].to_i 
     end  
     amount_lst = []
     # puts trades_ostruct['last_timestamp'], @_fs
@@ -38,10 +38,13 @@ class TradesByTime
         # puts "se rompió en #{idx}"
         break
       end
-      amount_lst.append(trades_ostruct['entries'][idx][1].to_i)
+      amount_lst.append(trades_ostruct['entries'][idx][1].to_f * trades_ostruct['entries'][idx][2].to_f)
     end
     idx_max = amount_lst.index(amount_lst.max)
-    if amount_lst[idx_max] == trades_ostruct['entries'][idx_max][1].to_i
+    # puts "idx_max: #{idx_max}"
+    if idx_max == nil
+      return "El mercado de #{@_market} no a registrado transacciones las últimas 24hrs."
+    elsif amount_lst[idx_max] == (trades_ostruct['entries'][idx_max][1].to_f * trades_ostruct['entries'][idx_max][2].to_f)
       return trades_ostruct['entries'][idx_max]
     else
       puts 'Uppss algo salio mal!'
