@@ -43,7 +43,7 @@ class TradesByTime
     idx_max = amount_lst.index(amount_lst.max)
     # puts "idx_max: #{idx_max}"
     if idx_max == nil
-      return "El mercado de #{@_market} no a registrado transacciones las últimas 24hrs."
+      return ["El mercado de #{@_market}",'no a registrado',' transacciones las',' últimas 24hrs.']
     elsif amount_lst[idx_max] == (trades_ostruct['entries'][idx_max][1].to_f * trades_ostruct['entries'][idx_max][2].to_f)
       return trades_ostruct['entries'][idx_max]
     else
